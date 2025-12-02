@@ -31,9 +31,15 @@ jobs:
         dotnet new ${{ matrix.template }} -o my-${{ matrix.template }}-app-dotnet-v${{ matrix.dotnet-version }} --language "C#" --verbosity diagnostic
 
   # -p:UseAppHost=false 
-    - working-directory: my-${{ matrix.template }}-app-dotnet-v${{ matrix.dotnet-version }}
+    - if: ${{ matrix.container == 'console' }}
+      working-directory: my-${{ matrix.template }}-app-dotnet-v${{ matrix.dotnet-version }}
       run: |
         dotnet publish -c Release --runtime win-x64 -p:PublishSingleFile=true -p:SelfContained=true --self-contained --verbosity diagnostic
+    
+    - if: ${{ matrix.container != 'console' }}
+      working-directory: my-${{ matrix.template }}-app-dotnet-v${{ matrix.dotnet-version }}
+      run: |
+        dotnet publish -c Release --runtime win-x64 -p:SelfContained=true --self-contained --verbosity diagnostic
         
     - uses: actions/upload-artifact@v4.6.0
       with:

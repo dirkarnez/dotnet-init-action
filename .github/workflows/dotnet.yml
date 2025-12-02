@@ -6,14 +6,31 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [8.0.x, 9.0.x, 10.0.x]
+        template: [ console, classlib ]
     steps:
     - uses: actions/checkout@v4
     
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: ${{ matrix.dotnet-version }}
+
+    # - name: dotnet pack
+    #   run: |
+    #     dotnet pack
+    #     dotnet pack -r win-x64
         
     - run: |
         dotnet new list
+
+    - run: |
+        dotnet new ${{ matrix.template }} -o my-${{ matrix.template }}-app-dotnet-v${{ matrix.dotnet-version }} --language "C#" --verbosity diagnostic
+
+    - uses: actions/upload-artifact@v4.6.0
+      with:
+        name: "my-${{ matrix.template }}-app-dotnet-v${{ matrix.dotnet-version }}"
+        path: "my-${{ matrix.template }}-app-dotnet-v${{ matrix.dotnet-version }}"
       

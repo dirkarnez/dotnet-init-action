@@ -4,3 +4,4 @@ dotnet-init-action
 - ['dotnet new' 的 .NET 預設範本 - .NET CLI | Microsoft Learn](https://learn.microsoft.com/zh-tw/dotnet/core/tools/dotnet-new-sdk-templates)
 - [dotnet publish command - .NET CLI | Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish)
   - [.NET Runtime Identifier (RID) catalog - .NET | Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/core/rid-catalog)
+  - [Create a single file for application deployment - .NET | Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/core/deploying/single-file/overview?source=recommendations&tabs=cli)

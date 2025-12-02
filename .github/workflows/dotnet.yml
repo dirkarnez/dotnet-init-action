@@ -19,6 +19,7 @@ jobs:
       with:
         dotnet-version: ${{ matrix.dotnet-version }}
 
+    # Windows
     # - shell: cmd
     #   run: |
     #     cd /d "C:\Program Files\dotnet\shared\Microsoft.NETCore.App" &&^

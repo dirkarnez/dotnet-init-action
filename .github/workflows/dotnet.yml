@@ -28,10 +28,11 @@ jobs:
 
     - run: |
         dotnet new ${{ matrix.template }} -o my-${{ matrix.template }}-app-dotnet-v${{ matrix.dotnet-version }} --language "C#" --verbosity diagnostic
-    
+
+  # -p:UseAppHost=false 
     - working-directory: my-${{ matrix.template }}-app-dotnet-v${{ matrix.dotnet-version }}
       run: |
-        dotnet publish -c Release -p:UseAppHost=false --runtime win-x64 --self-contained --verbosity diagnostic
+        dotnet publish -c Release --runtime win-x64 --self-contained --verbosity diagnostic
         
     - uses: actions/upload-artifact@v4.6.0
       with:

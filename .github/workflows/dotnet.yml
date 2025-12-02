@@ -31,7 +31,7 @@ jobs:
     
     - working-directory: my-${{ matrix.template }}-app-dotnet-v${{ matrix.dotnet-version }}
       run: |
-         dotnet pack -r win-x64
+        dotnet publish -c Release -p:UseAppHost=false --runtime win-x64 --self-contained --verbosity diagnostic
         
     - uses: actions/upload-artifact@v4.6.0
       with:

@@ -18,10 +18,10 @@ jobs:
       with:
         dotnet-version: ${{ matrix.dotnet-version }}
 
-    - shell: cmd
-      run: |
-        cd /d "C:\Program Files\dotnet\shared\Microsoft.NETCore.App" &&^
-        dir
+    # - shell: cmd
+    #   run: |
+    #     cd /d "C:\Program Files\dotnet\shared\Microsoft.NETCore.App" &&^
+    #     dir
         
     - run: |
         dotnet new list

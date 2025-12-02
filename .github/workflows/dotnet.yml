@@ -17,18 +17,17 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{ matrix.dotnet-version }}
-
-    # - name: dotnet pack
-    #   run: |
-    #     dotnet pack
-    #     dotnet pack -r win-x64
         
     - run: |
         dotnet new list
 
     - run: |
         dotnet new ${{ matrix.template }} -o my-${{ matrix.template }}-app-dotnet-v${{ matrix.dotnet-version }} --language "C#" --verbosity diagnostic
-
+    
+    - working-directory: my-${{ matrix.template }}-app-dotnet-v${{ matrix.dotnet-version }}
+      run: |
+         dotnet pack -r win-x64
+        
     - uses: actions/upload-artifact@v4.6.0
       with:
         name: "my-${{ matrix.template }}-app-dotnet-v${{ matrix.dotnet-version }}"
